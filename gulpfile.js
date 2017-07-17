@@ -14,12 +14,12 @@ gulp.task('moverHtml', () => {
     .pipe( gulp.dest("public"));  
 });
 
-/*gulp.task('moverJS', () => {
+gulp.task('moverJS', () => {
     gulp.src(rutas.js)
         .pipe(uglify())
         .pipe(obfuscate())
-    gulp.dest("./public/js");
-});*/
+    .pipe(gulp.dest("public/js/"));
+});
 
 gulp.task('prepararCss', () => {
     gulp.src(rutas.scss)
@@ -36,10 +36,10 @@ gulp.task('watchCss', () => {
         }
     });
     //vigila los cambios, tiene dos parametros la ruta que vigila y la tarea que ejecuta cuando exista algun cambio en esa ruta
-    gulp.watch(rutas.scss, ['sass-watch'])
+    gulp.watch(rutas.scss, ['watch'])
 });
 //
-gulp.task('sass-watch', ['prepararCss'], () => {
+gulp.task('watch', ['prepararCss','moverHtml','moverJS' ], () => {
     //recarga el servidor 
     browserSync.reload();
 })
