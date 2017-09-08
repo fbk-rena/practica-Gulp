@@ -47,6 +47,6 @@ gulp.task('watch', ['prepararCss','moverHtml','moverJS' ], () => {
 })
 
  gulp.task('deploy', function() {
-      return gulp.src('./minified/**/*')
+    return gulp.src("./dist/**/*")
         .pipe(ghPages());
     });
