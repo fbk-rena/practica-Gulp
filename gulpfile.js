@@ -3,6 +3,8 @@ const uglify = require('gulp-uglify')
 const sass = require('gulp-sass');
 const obfuscate = require('gulp-obfuscate');
 const browserSync = require('browser-sync').create();
+const ghPages = require('gulp-gh-pages');
+
 
 const rutas = {
     js: "./src/js/*.js",
@@ -43,3 +45,8 @@ gulp.task('watch', ['prepararCss','moverHtml','moverJS' ], () => {
     //recarga el servidor 
     browserSync.reload();
 })
+
+ gulp.task('deploy', function() {
+      return gulp.src('./minified/**/*')
+        .pipe(ghPages());
+    });
